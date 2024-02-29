@@ -1,4 +1,5 @@
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr} from './listItemArray';
+import {renderItemToDom} from './UI';
 
 const projectList = [];
 
@@ -36,10 +37,11 @@ function sortListItemsByProject() {
                 projectGroupArray.push(listItemArr[i]);
                 //Create key:value pair of project: Array of objects with that projectGroup
                 projectObjects[project] = projectGroupArray;
+                renderItemToDom(listItemArr[i], project);
             }
         }
     }
-    return console.log(projectObjects);
+    return projectObjects;
 }
 
 
