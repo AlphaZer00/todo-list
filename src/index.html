@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-    <header>TODO List</header>
-    <div></div>
+  <header>TODO List</header>
+  <dialog open>
+    <div class="modal-form-title">
+      <label for="itemTitle">Title:</label>
+      <input type="text" name="itemTitle" id="itemTitle">
+    </div>
+    <div class="modal-form-description">
+      <label for="itemDesc">Description:</label>
+      <input type="text" name="itemDesc" id="itemDesc">
+    </div>
+    <div class="modal-form-date">
+      <label for="itemDueDate">Due Date:</label>
+      <input type="text" name="itemDueDate" id="itemDueDate">
+    </div>
+    <div class="modal-form-priority">
+      <label for="itemPriority">Priority:</label>
+      <select name="itemPriority" id="itemPriority">
+        <option value="Low"></option>
+        <option value="Medium"></option>
+        <option value="High"></option>
+      </select>
+    </div>
+    <div class="modal-form-title">
+      <label for="itemTitle">Project:</label>
+      <select name="itemProject" id="itemProjectSelector">
+      </select>
+    </div>
+  </dialog>
 </body>
 </html>
