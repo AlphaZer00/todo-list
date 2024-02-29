@@ -46,4 +46,12 @@ function renderItemToDom(obj, project) {
     parent.append(title, desc, dueDate, priority, checkBox);
 }
 
-export {displayProjectList, renderItemToDom};
+function setModalProjectSelector() {
+    const arr = getProjectList();
+    const selector = document.getElementById('itemProjectSelector')
+    for (const index in arr) {
+        selector.options[selector.options.length] = new Option(arr[index]);
+    }
+}
+
+export {displayProjectList, renderItemToDom, setModalProjectSelectorUI};
