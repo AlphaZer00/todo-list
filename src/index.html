@@ -7,7 +7,8 @@
 </head>
 <body>
   <header>TODO List</header>
-  <dialog open>
+  <dialog open class="create-task-modal">
+    <h1>Create New Task</h1>
     <div class="modal-form-title">
       <label for="itemTitle">Title:</label>
       <input type="text" name="itemTitle" id="itemTitle">
@@ -18,7 +19,7 @@
     </div>
     <div class="modal-form-date">
       <label for="itemDueDate">Due Date:</label>
-      <input type="text" name="itemDueDate" id="itemDueDate">
+      <input type="datetime-local" name="itemDueDate" id="itemDueDate">
     </div>
     <div class="modal-form-priority">
       <label for="itemPriority">Priority:</label>
