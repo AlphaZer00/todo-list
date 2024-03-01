@@ -54,4 +54,17 @@ function setModalProjectSelector() {
     }
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelectorUI};
+function handleModalButtons() {
+    const modal = document.querySelector('.create-task-modal');
+    const createTaskModalBtn = document.querySelector('.create-task-modal-btn');
+    const closeTaskModalBtn = document.querySelector('.modal-close-btn');
+
+    closeTaskModalBtn.addEventListener('click', () => {
+        modal.close();
+    });
+
+    createTaskModalBtn.addEventListener('click', () => {
+        modal.showModal();
+    })
+}
+export {displayProjectList, renderItemToDom, setModalProjectSelector, handleModalButtons};
