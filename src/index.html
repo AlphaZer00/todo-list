@@ -7,33 +7,75 @@
 </head>
 <body>
   <header>TODO List</header>
-  <dialog open class="create-task-modal">
+  <button class="btn create-task-modal-btn">+</button>
+  <dialog class="create-task-modal">
     <h1>Create New Task</h1>
-    <div class="modal-form-title">
-      <label for="itemTitle">Title:</label>
-      <input type="text" name="itemTitle" id="itemTitle">
-    </div>
-    <div class="modal-form-description">
-      <label for="itemDesc">Description:</label>
-      <input type="text" name="itemDesc" id="itemDesc">
-    </div>
-    <div class="modal-form-date">
-      <label for="itemDueDate">Due Date:</label>
-      <input type="datetime-local" name="itemDueDate" id="itemDueDate">
-    </div>
-    <div class="modal-form-priority">
-      <label for="itemPriority">Priority:</label>
-      <select name="itemPriority" id="itemPriority">
-        <option value="Low"></option>
-        <option value="Medium"></option>
-        <option value="High"></option>
-      </select>
-    </div>
-    <div class="modal-form-title">
-      <label for="itemTitle">Project:</label>
-      <select name="itemProject" id="itemProjectSelector">
-      </select>
-    </div>
+    <form class="create-task-form">
+      <div class="modal-form-title">
+        <label for="itemTitle">Title:</label>
+        <input type="text" name="itemTitle" id="itemTitle">
+      </div>
+      <div class="modal-form-description">
+        <label for="itemDesc">Description:</label>
+        <input type="text" name="itemDesc" id="itemDesc">
+      </div>
+      <div class="modal-form-date">
+        <label for="itemDueDate">Due Date:</label>
+        <input type="datetime-local" name="itemDueDate" id="itemDueDate">
+      </div>
+      <div class="modal-form-priority">
+        <label for="itemPriority">Priority:</label>
+        <select name="itemPriority" id="itemPriority">
+          <option value="Low"></option>
+          <option value="Medium"></option>
+          <option value="High"></option>
+        </select>
+      </div>
+      <div class="modal-form-title">
+        <label for="itemTitle">Project:</label>
+        <select name="itemProject" id="itemProjectSelector">
+        </select>
+      </div>
+      <div class="modal-button-container">
+        <button id="modal-close-btn" class="modal-close-btn">Close</button>
+        <button type="submit" id="modal-submit-btn" class="modal-submit-btn">Create Task</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="edit-task-modal">
+    <h1>Edit Task</h1>
+    <form class="edit-task-form">
+      <div class="modal-form-title">
+        <label for="itemTitle">Title:</label>
+        <input type="text" name="itemTitle" id="itemTitle">
+      </div>
+      <div class="modal-form-description">
+        <label for="itemDesc">Description:</label>
+        <input type="text" name="itemDesc" id="itemDesc">
+      </div>
+      <div class="modal-form-date">
+        <label for="itemDueDate">Due Date:</label>
+        <input type="datetime-local" name="itemDueDate" id="itemDueDate">
+      </div>
+      <div class="modal-form-priority">
+        <label for="itemPriority">Priority:</label>
+        <select name="itemPriority" id="itemPriority">
+          <option value="Low"></option>
+          <option value="Medium"></option>
+          <option value="High"></option>
+        </select>
+      </div>
+      <div class="modal-form-title">
+        <label for="itemTitle">Project:</label>
+        <select name="itemProject" id="itemProjectSelector">
+        </select>
+      </div>
+      <div class="modal-button-container">
+        <button id="edit-modal-close-btn" class="edit-modal-close-btn">Close</button>
+        <button type="submit" id="edit-modal-submit-btn" class="edit-modal-submit-btn">Create Task</button>
+      </div>
+    </form>
   </dialog>
 </body>
 </html>
