@@ -31,6 +31,10 @@ function displayProjectList() {
 }
 
 function renderItemToDom(obj, project) {
+    if(document.querySelector('.project-area')) {
+       // document.querySelector('.project-area').innerHTML;
+    }
+
     const projectArea = document.querySelector('.project-area');
     const parent = projectArea.querySelector(`.${project}`);
 
@@ -54,7 +58,7 @@ function renderItemToDom(obj, project) {
     
     itemDiv.append(title, desc, dueDate, priority, checkBox, editBtn);
     parent.append(itemDiv);
-    handleEditModalButtons()
+    handleEditModalButtons();
 }
 
 function setModalProjectSelector() {
@@ -84,13 +88,11 @@ function handleEditModalButtons() {
     const editTaskModalBtn = document.querySelector('.edit-task-modal-btn');
     const closeEditTaskModalBtn = document.querySelector('.edit-modal-close-btn');
 
-
-
-    editTaskModalBtn.addEventListener('click', (e) => {
+    editTaskModalBtn.addEventListener('click', () => {
         editModal.showModal();
     })
     
-    closeEditTaskModalBtn.addEventListener('click', (e) => {
+    closeEditTaskModalBtn.addEventListener('click', () => {
         editModal.close();
     })
 }
@@ -100,6 +102,9 @@ function createListItemFromFormInput() {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        const modal = document.querySelector('.create-task-modal');
+        modal.close();
         const formData = new FormData(form);
         const obj = Object.fromEntries(formData);
 
