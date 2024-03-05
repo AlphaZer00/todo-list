@@ -1,14 +1,20 @@
 import {modifyTitle, modifyDescription, modifyDueDate, modifyPriority, modifyCheckBox, modifyProjectGroup} from './listItemModifier';
 import {getProjectList, addNewProject, deleteProject, sortListItemsByProject} from './projectManager';
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr} from './listItemArray';
+import createListItem from './listItemFactory';
 
 function displayProjectList() {
     //copy array from projectList
     const arr = getProjectList();
+    
+    //if projectArea div exists clear it
+    if (document.querySelector('.project-area')) {
+        document.querySelector('.project-area').remove();
+    }
     //create new div and add class
     const projectArea = document.createElement('div');
     projectArea.classList.add('project-area');
-
+    
     //for every project within the array
     for (const project of arr) {
         //create a div
@@ -67,4 +73,22 @@ function handleModalButtons() {
         modal.showModal();
     })
 }
-export {displayProjectList, renderItemToDom, setModalProjectSelector, handleModalButtons};
+
+function createListItemFromFormInput() {
+    const form = document.querySelector('.create-task-form');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        const obj = Object.fromEntries(formData);
+        console.log(obj.itemProject);
+
+        const newItem = createListItem(obj.itemTitle, obj.itemDesc, obj.itemDueDate, obj.itemPriority, false, obj.itemProject);
+        addListItemToArr(newItem);
+        displayProjectList();
+        sortListItemsByProject();
+    })
+
+}
+export {displayProjectList, renderItemToDom, setModalProjectSelector, handleModalButtons, createListItemFromFormInput};
