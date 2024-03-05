@@ -50,10 +50,11 @@ function renderItemToDom(obj, project) {
     priority.textContent = obj.priority;
     checkBox.textContent = obj.checkBox;
     editBtn.textContent = 'Edit';
-    editBtn.classList.add('edit-btn');
-
+    editBtn.classList.add('edit-task-modal-btn');
+    
     itemDiv.append(title, desc, dueDate, priority, checkBox, editBtn);
     parent.append(itemDiv);
+    handleEditModalButtons()
 }
 
 function setModalProjectSelector() {
@@ -65,16 +66,32 @@ function setModalProjectSelector() {
 }
 
 function handleModalButtons() {
-    const modal = document.querySelector('.create-task-modal');
+    const createModal = document.querySelector('.create-task-modal');
     const createTaskModalBtn = document.querySelector('.create-task-modal-btn');
     const closeTaskModalBtn = document.querySelector('.modal-close-btn');
-
+  
     closeTaskModalBtn.addEventListener('click', () => {
-        modal.close();
+        createModal.close();
     });
-
+    
     createTaskModalBtn.addEventListener('click', () => {
-        modal.showModal();
+        createModal.showModal();
+    })
+}
+
+function handleEditModalButtons() {
+    const editModal = document.querySelector('.edit-task-modal');
+    const editTaskModalBtn = document.querySelector('.edit-task-modal-btn');
+    const closeEditTaskModalBtn = document.querySelector('.edit-modal-close-btn');
+
+
+
+    editTaskModalBtn.addEventListener('click', (e) => {
+        editModal.showModal();
+    })
+    
+    closeEditTaskModalBtn.addEventListener('click', (e) => {
+        editModal.close();
     })
 }
 
