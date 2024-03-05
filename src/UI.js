@@ -7,7 +7,7 @@ function displayProjectList() {
     //copy array from projectList
     const arr = getProjectList();
     
-    //if projectArea div exists clear it
+    //if projectArea div exists remove it
     if (document.querySelector('.project-area')) {
         document.querySelector('.project-area').remove();
     }
@@ -42,14 +42,18 @@ function renderItemToDom(obj, project) {
     const dueDate = document.createElement('div');
     const priority = document.createElement('div');
     const checkBox = document.createElement('div');
+    const editBtn = document.createElement('button');
     
     title.textContent = obj.title;
     desc.textContent = obj.description;
     dueDate.textContent = obj.dueDate;
     priority.textContent = obj.priority;
     checkBox.textContent = obj.checkBox;
+    editBtn.textContent = 'Edit';
+    editBtn.classList.add('edit-btn');
 
-    parent.append(title, desc, dueDate, priority, checkBox);
+    itemDiv.append(title, desc, dueDate, priority, checkBox, editBtn);
+    parent.append(itemDiv);
 }
 
 function setModalProjectSelector() {
@@ -80,15 +84,14 @@ function createListItemFromFormInput() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(form);
-
         const obj = Object.fromEntries(formData);
-        console.log(obj.itemProject);
 
         const newItem = createListItem(obj.itemTitle, obj.itemDesc, obj.itemDueDate, obj.itemPriority, false, obj.itemProject);
+
         addListItemToArr(newItem);
         displayProjectList();
         sortListItemsByProject();
     })
-
 }
+
 export {displayProjectList, renderItemToDom, setModalProjectSelector, handleModalButtons, createListItemFromFormInput};
