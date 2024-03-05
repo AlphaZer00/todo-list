@@ -10,7 +10,7 @@
   <button class="btn create-task-modal-btn">+</button>
   <dialog class="create-task-modal">
     <h1>Create New Task</h1>
-    <form class="create-task-form">
+    <form method="post" class="create-task-form">
       <div class="modal-form-title">
         <label for="itemTitle">Title:</label>
         <input type="text" name="itemTitle" id="itemTitle">
@@ -37,7 +37,7 @@
         </select>
       </div>
       <div class="modal-button-container">
-        <button id="modal-close-btn" class="modal-close-btn">Close</button>
+        <button type="button" id="modal-close-btn" class="modal-close-btn">Close</button>
         <button type="submit" id="modal-submit-btn" class="modal-submit-btn">Create Task</button>
       </div>
     </form>
