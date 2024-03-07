@@ -55,6 +55,12 @@ function renderItemToDom(obj, project) {
     priority.textContent = obj.priority;
     checkBox.textContent = obj.checkBox;
     editBtn.textContent = 'Edit';
+
+    title.classList.add('item-title');
+    desc.classList.add('item-desc');
+    dueDate.classList.add('item-due-date');
+    priority.classList.add('item-priority');
+    checkBox.classList.add('item-checkbox');
     editBtn.classList.add('edit-task-modal-btn');
     
     itemDiv.append(title, desc, dueDate, priority, checkBox, editBtn);
