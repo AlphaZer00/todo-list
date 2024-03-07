@@ -19,4 +19,12 @@ function removeListItemFromArr(item) {
     }
 }
 
-export {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr}
+function addUniqueID() {
+    for(let i=0; i < listItemArr.length; i++) {
+        let obj = listItemArr[i];
+        obj['id'] = i;
+    }
+    return listItemArr;
+}
+
+export {getListItemArr, addListItemToArr, removeListItemFromArr, addUniqueID, listItemArr}
