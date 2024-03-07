@@ -40,6 +40,7 @@ function renderItemToDom(obj, project) {
 
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('todo-item');
+    itemDiv.setAttribute('data-id', obj.id);
 
     const title = document.createElement('div');
     const desc = document.createElement('div');
