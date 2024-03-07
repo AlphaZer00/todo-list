@@ -107,6 +107,24 @@ function handleEditModalButtons() {
     })
 }
 
+function loadEditModalValues(e) {
+    const editModal = document.querySelector('.edit-task-modal');
+    const item = e.target.parentNode;
+
+    const title = document.getElementById('editItemTitle');
+    const desc = document.getElementById('editItemDesc');
+    const dueDate = document.getElementById('editItemDueDate');
+    const priority = document.getElementById('editItemPriority');
+    const project = document.getElementById('editItemProject');
+
+    title.value = item.querySelector('.item-title').textContent;
+    desc.value = item.querySelector('.item-desc').textContent;
+    dueDate.value = item.querySelector('.item-due-date').textContent;
+    priority.value = item.querySelector('.item-priority').textContent;
+    //project needs to be taken from obj value
+    project.value = item.querySelector('.item-project').textContent;
+}
+
 function createListItemFromFormInput() {
     const form = document.querySelector('.create-task-form');
 
@@ -126,4 +144,4 @@ function createListItemFromFormInput() {
     })
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelector, handleModalButtons, createListItemFromFormInput};
+export {displayProjectList, renderItemToDom, setModalProjectSelector, handleModalButtons, createListItemFromFormInput, loadEditModalValues};
