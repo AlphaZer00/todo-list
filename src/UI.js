@@ -94,9 +94,10 @@ function handleEditModalButtons() {
     const editModal = document.querySelector('.edit-task-modal');
     const editTaskModalBtn = document.querySelectorAll('.edit-task-modal-btn');
     const closeEditTaskModalBtn = document.querySelector('.edit-modal-close-btn');
-
+    
     editTaskModalBtn.forEach(function(el) {
-        el.addEventListener('click', () => {
+        el.addEventListener('click', (e) => {
+            loadEditModalValues(e);
             editModal.showModal();
         })
     })
