@@ -147,10 +147,11 @@ function createListItemFromFormInput() {
         modal.close();
         const formData = new FormData(form);
         const obj = Object.fromEntries(formData);
-
-        const newItem = createListItem(obj.itemTitle, obj.itemDesc, obj.itemDueDate, obj.itemPriority, false, obj.itemProject);
+        
+    	const newItem = createListItem(obj.itemTitle, obj.itemDesc, obj.itemDueDate, obj.itemPriority, false, obj.itemProject);
 
         addListItemToArr(newItem);
+        addUniqueID();
         displayProjectList();
         sortListItemsByProject();
     })
