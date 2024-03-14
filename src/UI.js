@@ -1,6 +1,6 @@
 import {modifyTitle, modifyDescription, modifyDueDate, modifyPriority, modifyCheckBox, modifyProjectGroup} from './listItemModifier';
 import {getProjectList, addNewProject, deleteProject, sortListItemsByProject} from './projectManager';
-import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr} from './listItemArray';
+import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID} from './listItemArray';
 import createListItem from './listItemFactory';
 
 function displayProjectList() {
