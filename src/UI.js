@@ -68,11 +68,15 @@ function renderItemToDom(obj, project) {
     handleEditModalButtons();
 }
 
-function setModalProjectSelector() {
+function setModalProjectSelectors() {
     const arr = getProjectList();
     const selector = document.getElementById('itemProjectSelector')
+    const editSelector = document.getElementById('editItemProjectSelector')
     for (const index in arr) {
-        selector.options[selector.options.length] = new Option(arr[index]);
+        selector.options[selector.options.length] = new Option(arr[index], arr[index] );
+    }
+    for (const index in arr) {
+        editSelector.options[selector.options.length] = new Option(arr[index], arr[index]);
     }
 }
 
