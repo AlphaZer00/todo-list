@@ -120,21 +120,18 @@ function loadEditModalValues(e) {
     const desc = document.getElementById('editItemDesc');
     const dueDate = document.getElementById('editItemDueDate');
     const priority = document.getElementById('editItemPriority');
-    const priorityOptions = priority.querySelectorAll('option');
-    const project = document.getElementById('editItemProject');
+    const project = document.getElementById('editItemProjectSelector');
+    const projectOptions = project.querySelectorAll('option');	
 
     title.value = item.querySelector('.item-title').textContent;
     desc.value = item.querySelector('.item-desc').textContent;
     dueDate.value = item.querySelector('.item-due-date').textContent;
-
-    priorityOptions.forEach((el) => {
-        if (el.value === listItemArr[itemId].priority) {
-            priority.value = el.value
+    priority.value = item.querySelector('.item-priority').textContent;
+	projectOptions.forEach((el) => {
+        if (el.value === listItemArr[itemId].projectGroup) {
+            project.value = el.value
         }
     })
-
-    //project needs to be taken from obj value
-    //project.value = listItemArr[itemId].projectGroup;
 }
 
 function createListItemFromFormInput() {
