@@ -122,6 +122,7 @@ function loadEditModalValues(e) {
     const priority = document.getElementById('editItemPriority');
     const project = document.getElementById('editItemProjectSelector');
     const projectOptions = project.querySelectorAll('option');	
+    const itemIdInput = document.getElementById('itemId');
 
     title.value = item.querySelector('.item-title').textContent;
     desc.value = item.querySelector('.item-desc').textContent;
@@ -132,6 +133,7 @@ function loadEditModalValues(e) {
             project.value = el.value
         }
     })
+    itemIdInput.value = itemId;
 }
 
 function createListItemFromFormInput() {
