@@ -147,7 +147,7 @@ function createListItemFromFormInput() {
         const formData = new FormData(form);
         const obj = Object.fromEntries(formData);
         
-    	const newItem = createListItem(obj.itemTitle, obj.itemDesc, obj.itemDueDate, obj.itemPriority, false, obj.itemProject);
+    	const newItem = createListItem(obj.title, obj.description, obj.dueDate, obj.priority, false, obj.projectGroup);
 
         addListItemToArr(newItem);
         addUniqueID();
@@ -156,4 +156,30 @@ function createListItemFromFormInput() {
     })
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelector, handleModalButtons, createListItemFromFormInput, loadEditModalValues};
+function updateListItemFromFormInput() {
+    const form = document.querySelector('.edit-task-form');
+    const submitBtn = document.getElementById('edit-modal-submit-btn');
+
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const editFormData = new FormData(form);
+        const newObj = Object.fromEntries(editFormData);
+        console.table(newObj);
+        console.log(listItemArr[newObj.id]);
+        const oldObj = listItemArr[newObj.id];
+        console.table(listItemArr);
+
+        let oldIndex = listItemArr.indexOf(oldObj);
+
+        if (oldIndex !== -1 && !(oldObj == newObj)) {
+            listItemArr[oldIndex] = newObj;
+        }
+        console.table(listItemArr);
+
+        displayProjectList();
+        sortListItemsByProject();
+    })
+}
+
+export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput};
