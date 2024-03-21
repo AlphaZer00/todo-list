@@ -7,13 +7,8 @@ function displayProjectList() {
     //copy array from projectList
     const arr = getProjectList();
     
-    //if projectArea div exists remove it
-    if (document.querySelector('.project-area')) {
-        document.querySelector('.project-area').remove();
-    }
-    //create new div and add class
-    const projectArea = document.createElement('div');
-    projectArea.classList.add('project-area');
+    //Get reference to project-area div
+    const projectArea = document.querySelector('.project-area');
     
     //for every project within the array
     for (const project of arr) {
@@ -26,8 +21,6 @@ function displayProjectList() {
         //append div to project container div
         projectArea.append(projectDiv);
     }
-    //append project div to html body
-    document.body.append(projectArea);
 }
 
 function renderItemToDom(obj, project) {
@@ -42,30 +35,32 @@ function renderItemToDom(obj, project) {
     itemDiv.classList.add('todo-item');
     itemDiv.setAttribute('data-id', obj.id);
 
+    const checkBox = document.createElement('input');
+    checkBox.setAttribute('type', 'checkbox');
     const title = document.createElement('div');
     const desc = document.createElement('div');
     const dueDate = document.createElement('div');
     const priority = document.createElement('div');
-    const checkBox = document.createElement('div');
     const editBtn = document.createElement('button');
     
+    obj.checkBox === 'true' ? checkBox.checked = true : checkBox.checked = false;
     title.textContent = obj.title;
     desc.textContent = obj.description;
     dueDate.textContent = obj.dueDate;
     priority.textContent = obj.priority;
-    checkBox.textContent = obj.checkBox;
     editBtn.textContent = 'Edit';
 
+    checkBox.classList.add('item-checkbox');
     title.classList.add('item-title');
     desc.classList.add('item-desc');
     dueDate.classList.add('item-due-date');
     priority.classList.add('item-priority');
-    checkBox.classList.add('item-checkbox');
     editBtn.classList.add('edit-task-modal-btn');
     
-    itemDiv.append(title, desc, dueDate, priority, checkBox, editBtn);
+    itemDiv.append(checkBox, title, desc, dueDate, priority,  editBtn);
     parent.append(itemDiv);
     handleEditModalButtons();
+    handleCheckBox(itemDiv);
 }
 
 function setModalProjectSelectors() {
@@ -111,6 +106,21 @@ function handleEditModalButtons() {
     })
 }
 
+function handleCheckBox(div) {
+    const checkBox = div.querySelector('.item-checkbox');
+    const completed = document.querySelector('.completed-area');
+    checkBox.addEventListener('change', (e) => {
+        if (checkBox.checked === true) {
+            completed.append(e.target.parentNode);
+        }
+        if (checkBox.checked === false) {
+            const project = listItemArr[e.target.parentNode.getAttribute('data-id')].projectGroup;
+            const projectSection = document.querySelector(`.${project}`);
+            projectSection.append(e.target.parentNode);
+        }
+    })
+}
+
 function loadEditModalValues(e) {
     const editModal = document.querySelector('.edit-task-modal');
     const item = e.target.parentNode;
@@ -147,12 +157,11 @@ function createListItemFromFormInput() {
         const formData = new FormData(form);
         const obj = Object.fromEntries(formData);
         
-    	const newItem = createListItem(obj.title, obj.description, obj.dueDate, obj.priority, false, obj.projectGroup);
+    	const newItem = createListItem(false, obj.title, obj.description, obj.dueDate, obj.priority,  obj.projectGroup);
 
         addListItemToArr(newItem);
         addUniqueID();
-        displayProjectList();
-        sortListItemsByProject();
+        renderItemToDom(newItem, newItem.projectGroup);
     })
 }
 
