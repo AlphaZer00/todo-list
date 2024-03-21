@@ -1,4 +1,4 @@
-function createListItem(title, description, dueDate, priority, checkBox, projectGroup) {
-    return {title, description, dueDate, priority, checkBox, projectGroup};
+function createListItem(checkBox, title, description, dueDate, priority,  projectGroup) {
+    return {checkBox, title, description, dueDate, priority,  projectGroup};
 }
 export default createListItem;
