@@ -17,6 +17,10 @@
   <dialog class="create-task-modal">
     <h1>Create New Task</h1>
     <form class="create-task-form">
+      <div class="modal-form-checkbox">
+        <label for="itemCheckBox"></label>
+        <input type="checkbox" name="checkBox" id="itemCheckBox" value="true">
+      </div>
       <div class="modal-form-title">
         <label for="itemTitle">Title:</label>
         <input type="text" name="title" id="itemTitle">
@@ -52,6 +56,10 @@
   <dialog class="edit-task-modal">
     <h1>Edit Task</h1>
     <form class="edit-task-form">
+      <div class="modal-form-checkbox">
+        <label for="editItemCheckBox"></label>
+        <input type="checkbox" name="checkBox" id="editItemCheckBox" value="true">
+      </div>
       <div class="modal-form-title">
         <label for="editItemTitle">Title:</label>
         <input type="text" name="title" id="editItemTitle">
