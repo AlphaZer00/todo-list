@@ -181,9 +181,9 @@ function updateListItemFromFormInput() {
             listItemArr[oldIndex] = newObj;
         }
         console.table(listItemArr);
-
-        displayProjectList();
-        sortListItemsByProject();
+        const oldObjDom = document.querySelector(`[data-id='${newObj.id}']`);
+        oldObjDom.remove();
+        renderItemToDom(newObj, newObj.projectGroup);
     })
 }
 
