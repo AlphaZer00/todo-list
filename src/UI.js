@@ -24,10 +24,6 @@ function displayProjectList() {
 }
 
 function renderItemToDom(obj, project) {
-    if(document.querySelector('.project-area')) {
-       // document.querySelector('.project-area').innerHTML;
-    }
-
     const projectArea = document.querySelector('.project-area');
     const parent = projectArea.querySelector(`.${project}`);
 
