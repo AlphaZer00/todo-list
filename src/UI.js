@@ -2,6 +2,7 @@ import {modifyTitle, modifyDescription, modifyDueDate, modifyPriority, modifyChe
 import {getProjectList, addNewProject, deleteProject, sortListItemsByProject} from './projectManager';
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID} from './listItemArray';
 import createListItem from './listItemFactory';
+import {format} from "date-fns";
 
 function displayProjectList() {
     //copy array from projectList
@@ -42,7 +43,7 @@ function renderItemToDom(obj, project) {
     obj.checkBox === 'true' ? checkBox.checked = true : checkBox.checked = false;
     title.textContent = obj.title;
     desc.textContent = obj.description;
-    dueDate.textContent = obj.dueDate;
+    dueDate.textContent = handleDate(obj.dueDate);
     priority.textContent = obj.priority;
     editBtn.textContent = 'Edit';
 
@@ -132,7 +133,7 @@ function loadEditModalValues(e) {
 
     title.value = item.querySelector('.item-title').textContent;
     desc.value = item.querySelector('.item-desc').textContent;
-    dueDate.value = item.querySelector('.item-due-date').textContent;
+    dueDate.value = formatISODate(item.querySelector('.item-due-date').textContent);
     priority.value = item.querySelector('.item-priority').textContent;
 	projectOptions.forEach((el) => {
         if (el.value === listItemArr[itemId].projectGroup) {
@@ -185,6 +186,14 @@ function updateListItemFromFormInput() {
         oldObjDom.remove();
         renderItemToDom(newObj, newObj.projectGroup);
     })
+}
+
+function handleDate(inputDate) {
+    return format(new Date(inputDate), 'MM/dd/yyyy hh:mm a')
+}
+
+function formatISODate(inputDate) {
+    return format(new Date(inputDate), "yyyy-MM-dd'T'HH:mm:ss");
 }
 
 export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput};
