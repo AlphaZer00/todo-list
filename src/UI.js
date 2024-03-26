@@ -39,6 +39,7 @@ function renderItemToDom(obj, project) {
     const dueDate = document.createElement('div');
     const priority = document.createElement('div');
     const editBtn = document.createElement('button');
+    const deleteBtn = document.createElement('button');
     
     obj.checkBox === 'true' ? checkBox.checked = true : checkBox.checked = false;
     title.textContent = obj.title;
@@ -46,6 +47,7 @@ function renderItemToDom(obj, project) {
     dueDate.textContent = handleDate(obj.dueDate);
     priority.textContent = obj.priority;
     editBtn.textContent = 'Edit';
+    deleteBtn.textContent = 'Delete';
 
     checkBox.classList.add('item-checkbox');
     title.classList.add('item-title');
@@ -53,10 +55,12 @@ function renderItemToDom(obj, project) {
     dueDate.classList.add('item-due-date');
     priority.classList.add('item-priority');
     editBtn.classList.add('edit-task-modal-btn');
+    deleteBtn.classList.add('delete-btn');
     
-    itemDiv.append(checkBox, title, desc, dueDate, priority,  editBtn);
+    itemDiv.append(checkBox, title, desc, dueDate, priority, editBtn, deleteBtn);
     parent.append(itemDiv);
     handleEditModalButtons();
+    handleDeleteBtn(itemDiv);
     handleCheckBox(itemDiv);
 }
 
@@ -90,6 +94,7 @@ function handleEditModalButtons() {
     const editModal = document.querySelector('.edit-task-modal');
     const editTaskModalBtn = document.querySelectorAll('.edit-task-modal-btn');
     const closeEditTaskModalBtn = document.querySelector('.edit-modal-close-btn');
+    const deleteBtn = document.querySelectorAll('.delete-btn');
     
     editTaskModalBtn.forEach(function(el) {
         el.addEventListener('click', (e) => {
@@ -100,6 +105,18 @@ function handleEditModalButtons() {
     
     closeEditTaskModalBtn.addEventListener('click', () => {
         editModal.close();
+    })
+}
+
+function handleDeleteBtn(div) {
+    const deleteBtn = div.querySelector('.delete-btn');
+    
+    deleteBtn.addEventListener('click', (e) => {
+        if (window.confirm("This will permanently delete this item, are you sure?")) {
+            e.target.parentNode.remove();
+        } else {
+            return;
+        }
     })
 }
 
