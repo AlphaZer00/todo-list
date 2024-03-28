@@ -193,17 +193,13 @@ function updateListItemFromFormInput() {
 
         const editFormData = new FormData(form);
         const newObj = Object.fromEntries(editFormData);
-        console.table(newObj);
-        console.log(listItemArr[newObj.id]);
         const oldObj = listItemArr[newObj.id];
-        console.table(listItemArr);
-
         let oldIndex = listItemArr.indexOf(oldObj);
 
         if (oldIndex !== -1 && !(oldObj == newObj)) {
             listItemArr[oldIndex] = newObj;
         }
-        console.table(listItemArr);
+
         const oldObjDom = document.querySelector(`[data-id='${newObj.id}']`);
         oldObjDom.remove();
         renderItemToDom(newObj, newObj.projectGroup);
