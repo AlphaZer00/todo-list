@@ -26,7 +26,7 @@ function storageAvailable(type) {
 }
 
 function storeObj(id, obj) {
-    if(storageAvailable('localStorage')) {
+    if (storageAvailable('localStorage')) {
         localStorage.setItem(id, obj);
     }
 }
@@ -35,4 +35,16 @@ function removeObjFromStorage(key) {
     localStorage.removeItem(key);
 }
 
-export { storeObj, removeObjFromStorage }
+function getKeyArrFromStorage() {
+    if (storageAvailable('localStorage')) {
+        const keyArr = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            if (isNaN(localStorage.key(i)) && isNaN(parseFloat(localStorage.key(i)))) continue;
+            let key = localStorage.key(i);
+            keyArr.push(key);
+        }
+        return keyArr;
+    }
+}
+
+export { storeObj, removeObjFromStorage, getKeyArrFromStorage }

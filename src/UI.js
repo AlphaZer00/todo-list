@@ -3,7 +3,7 @@ import {getProjectList, addNewProject, deleteProject, sortListItemsByProject} fr
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID} from './listItemArray';
 import createListItem from './listItemFactory';
 import {format} from "date-fns";
-import {removeObjFromStorage, storeObj} from './storage';
+import {removeObjFromStorage, storeObj, getKeyArrFromStorage} from './storage';
 
 function displayProjectList() {
     //copy array from projectList
@@ -216,4 +216,14 @@ function formatISODate(inputDate) {
     return format(new Date(inputDate), "yyyy-MM-dd'T'HH:mm:ss");
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput};
+function loadItemsFromStorage() {
+    window.addEventListener('load', () => {
+        const keyArr = getKeyArrFromStorage();
+        keyArr.forEach((key) => {
+            const item = JSON.parse(localStorage.getItem(key));
+            renderItemToDom(item, item.projectGroup);
+        });
+    })
+}
+
+export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage};
