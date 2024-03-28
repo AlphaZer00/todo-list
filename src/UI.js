@@ -3,6 +3,7 @@ import {getProjectList, addNewProject, deleteProject, sortListItemsByProject} fr
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID} from './listItemArray';
 import createListItem from './listItemFactory';
 import {format} from "date-fns";
+import {removeObjFromStorage, storeObj} from './storage';
 
 function displayProjectList() {
     //copy array from projectList
@@ -114,6 +115,9 @@ function handleDeleteBtn(div) {
     deleteBtn.addEventListener('click', (e) => {
         if (window.confirm("This will permanently delete this item, are you sure?")) {
             e.target.parentNode.remove();
+            removeObjFromStorage(e.target.parentNode.getAttribute('data-id'));
+            let obj = listItemArr[e.target.parentNode.getAttribute('data-id')];
+            removeListItemFromArr(obj);
         } else {
             return;
         }
@@ -176,6 +180,7 @@ function createListItemFromFormInput() {
         addListItemToArr(newItem);
         addUniqueID();
         renderItemToDom(newItem, newItem.projectGroup);
+        storeObj(newItem.id, JSON.stringify(newItem));
     })
 }
 
@@ -202,6 +207,8 @@ function updateListItemFromFormInput() {
         const oldObjDom = document.querySelector(`[data-id='${newObj.id}']`);
         oldObjDom.remove();
         renderItemToDom(newObj, newObj.projectGroup);
+        removeObjFromStorage(oldObj.id);
+        storeObj(newObj.id, JSON.stringify(newObj));
     })
 }
 
