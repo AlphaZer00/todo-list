@@ -234,6 +234,7 @@ function loadItemsFromStorage() {
         const keyArr = getKeyArrFromStorage();
         keyArr.forEach((key) => {
             const item = JSON.parse(localStorage.getItem(key));
+            addListItemToArr(item);
             renderItemToDom(item, item.projectGroup);
         });
     })
