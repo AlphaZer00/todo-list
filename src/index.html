@@ -24,7 +24,7 @@
       </div>
       <div class="modal-form-title">
         <label for="itemTitle">Title:</label>
-        <input type="text" name="title" id="itemTitle">
+        <input type="text" name="title" id="itemTitle" required>
       </div>
       <div class="modal-form-description">
         <label for="itemDesc">Description:</label>
@@ -32,11 +32,11 @@
       </div>
       <div class="modal-form-date">
         <label for="itemDueDate">Due Date:</label>
-        <input type="datetime-local" name="dueDate" id="itemDueDate">
+        <input type="datetime-local" name="dueDate" id="itemDueDate" required>
       </div>
       <div class="modal-form-priority">
         <label for="itemPriority">Priority:</label>
-        <select name="priority" id="itemPriority" size="1">
+        <select name="priority" id="itemPriority" size="1" required>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
@@ -44,7 +44,7 @@
       </div>
       <div class="modal-form-title">
         <label for="itemTitle">Project:</label>
-        <select name="projectGroup" id="itemProjectSelector">
+        <select name="projectGroup" id="itemProjectSelector" required>
         </select>
       </div>
       <div class="modal-button-container">
@@ -59,12 +59,12 @@
     <form class="edit-task-form">
       <div class="modal-form-checkbox">
         <label for="editItemCheckBox"></label>
-        <input type="checkbox" name="checkBox" id="editItemCheckBox" value="true">
+        <input type="checkbox" name="checkBox" id="editItemCheckBox" value="true" required>
       </div>
       <div class="modal-form-title">
         <label for="editItemTitle">Title:</label>
-        <input type="text" name="title" id="editItemTitle">
-        <input type="hidden" name="id" id="itemId"> 
+        <input type="text" name="title" id="editItemTitle" required>
+        <input type="hidden" name="id" id="itemId" required> 
       </div>
       <div class="modal-form-description">
         <label for="editItemDesc">Description:</label>
@@ -72,11 +72,11 @@
       </div>
       <div class="modal-form-date">
         <label for="editItemDueDate">Due Date:</label>
-        <input type="datetime-local" name="dueDate" id="editItemDueDate">
+        <input type="datetime-local" name="dueDate" id="editItemDueDate" required>
       </div>
       <div class="modal-form-priority">
         <label for="editItemPriority">Priority:</label>
-        <select name="priority" id="editItemPriority" size="1">
+        <select name="priority" id="editItemPriority" size="1" required>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
@@ -84,7 +84,7 @@
       </div>
       <div class="modal-form-project">
         <label for="editItemProjectSelector">Project:</label>
-        <select name="projectGroup" id="editItemProjectSelector">
+        <select name="projectGroup" id="editItemProjectSelector" required>
         </select>
       </div>
       <div class="modal-button-container">
@@ -98,7 +98,7 @@
     <form class="add-project-form">
       <div class="modal-project-name">
         <label for="projectName">Name:</label>
-        <input type="text" name="project" id="projectName">
+        <input type="text" name="project" id="projectName" required>
       </div>
       <div class="modal-button-container">
         <button type="button" id="add-project-close-btn">Close</button>
