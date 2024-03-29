@@ -25,6 +25,15 @@ function displayProjectList() {
     }
 }
 
+function displayNewProject(project) {
+    const projectArea = document.querySelector('.project-area');
+    const projectDiv = document.createElement('div');
+
+    projectDiv.innerText = project;
+    projectDiv.classList.add('project-section', `${project}`);
+    projectArea.append(projectDiv);
+}
+
 function renderItemToDom(obj, project) {
     const projectArea = document.querySelector('.project-area');
     const parent = projectArea.querySelector(`.${project}`);
@@ -193,6 +202,27 @@ function createListItemFromFormInput() {
     })
 }
 
+function createProjectFromForm() {
+    const form = document.querySelector('.add-project-form');
+    const modal = document.querySelector('.add-project-modal');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const obj = Object.fromEntries(formData);
+        const arr = getProjectList();
+
+        if (arr.includes(obj.project)) {
+            return console.log('Err; Already exists');
+        }
+        addNewProject(obj.project);
+        displayNewProject(obj.project);
+        form.reset();
+        modal.close();
+    })
+}
+
 function updateListItemFromFormInput() {
     const form = document.querySelector('.edit-task-form');
     const submitBtn = document.getElementById('edit-modal-submit-btn');
@@ -240,4 +270,4 @@ function loadItemsFromStorage() {
     })
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleProjectModalButtons};
+export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleProjectModalButtons, createProjectFromForm};
