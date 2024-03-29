@@ -61,7 +61,7 @@ function renderItemToDom(obj, project) {
     itemDiv.append(checkBox, title, desc, dueDate, priority, editBtn, deleteBtn);
     parent.append(itemDiv);
     handleEditModalButtons();
-    handleDeleteBtn(itemDiv);
+    handleItemDeleteBtn(itemDiv);
     handleCheckBox(itemDiv);
 }
 
@@ -109,7 +109,17 @@ function handleEditModalButtons() {
     })
 }
 
-function handleDeleteBtn(div) {
+function handleProjectModalButtons() {
+    const projectModal = document.querySelector('.add-project-modal');
+    const projectModalBtn = document.querySelector('.add-project-btn');
+    const closeProjectModalBtn = document.getElementById('add-project-close-btn');
+
+    closeProjectModalBtn.addEventListener('click', () => projectModal.close());
+    projectModalBtn.addEventListener('click', () => projectModal.showModal());
+
+}
+
+function handleItemDeleteBtn(div) {
     const deleteBtn = div.querySelector('.delete-btn');
     
     deleteBtn.addEventListener('click', (e) => {
@@ -230,4 +240,4 @@ function loadItemsFromStorage() {
     })
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage};
+export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleProjectModalButtons};
