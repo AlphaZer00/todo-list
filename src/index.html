@@ -14,6 +14,7 @@
     <h2>Completed Tasks</h2>
   </div>
   <button class="btn create-task-modal-btn">+</button>
+  <button class="btn add-project-btn">Create New Project</button>
   <dialog class="create-task-modal">
     <h1>Create New Task</h1>
     <form class="create-task-form">
@@ -89,6 +90,19 @@
       <div class="modal-button-container">
         <button type="button" id="edit-modal-close-btn" class="edit-modal-close-btn">Close</button>
         <button type="submit" id="edit-modal-submit-btn" class="edit-modal-submit-btn">Update Task</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog class="add-project-modal">
+    <h1>Add New Project</h1>
+    <form class="add-project-form">
+      <div class="modal-project-name">
+        <label for="projectName">Name:</label>
+        <input type="text" name="project" id="projectName">
+      </div>
+      <div class="modal-button-container">
+        <button type="button" id="add-project-close-btn">Close</button>
+        <button type="submit" id="add-project-close-btn">Submit</button>
       </div>
     </form>
   </dialog>
