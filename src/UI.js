@@ -174,9 +174,9 @@ function createListItemFromFormInput() {
         modal.close();
         const formData = new FormData(form);
         const obj = Object.fromEntries(formData);
-        
     	const newItem = createListItem(false, obj.title, obj.description, obj.dueDate, obj.priority,  obj.projectGroup);
-
+        
+        form.reset();
         addListItemToArr(newItem);
         addUniqueID();
         renderItemToDom(newItem, newItem.projectGroup);
@@ -191,6 +191,7 @@ function updateListItemFromFormInput() {
     submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
+        const modal = document.querySelector('.edit-task-modal');
         const editFormData = new FormData(form);
         const newObj = Object.fromEntries(editFormData);
         const oldObj = listItemArr[newObj.id];
@@ -205,6 +206,9 @@ function updateListItemFromFormInput() {
         renderItemToDom(newObj, newObj.projectGroup);
         removeObjFromStorage(oldObj.id);
         storeObj(newObj.id, JSON.stringify(newObj));
+
+        modal.close();
+        form.reset();
     })
 }
 
