@@ -7,7 +7,8 @@ import {removeObjFromStorage, storeObj, getKeyArrFromStorage} from './storage';
 
 function displayProjectList() {
     //copy array from projectList
-    const arr = getProjectList();
+    let str = localStorage.getItem('projectArray');
+    const arr = str.split(',');
     
     //Get reference to project-area div
     const projectArea = document.querySelector('.project-area');
@@ -221,6 +222,7 @@ function createProjectFromForm() {
         }
         addNewProject(obj.project);
         displayNewProject(obj.project);
+        storeObj('projectArray', getProjectList());
         form.reset();
         modal.close();
         setModalProjectSelectors();
@@ -266,6 +268,7 @@ function formatISODate(inputDate) {
 function loadItemsFromStorage() {
     window.addEventListener('load', () => {
         const keyArr = getKeyArrFromStorage();
+        displayProjectList();
         keyArr.forEach((key) => {
             const item = JSON.parse(localStorage.getItem(key));
             addListItemToArr(item);
