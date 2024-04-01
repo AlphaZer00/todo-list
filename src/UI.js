@@ -246,9 +246,9 @@ function updateListItemFromFormInput() {
 
         const oldObjDom = document.querySelector(`[data-id='${newObj.id}']`);
         oldObjDom.remove();
-        renderItemToDom(newObj, newObj.projectGroup);
         removeObjFromStorage(oldObj.id);
         storeObj(newObj.id, JSON.stringify(newObj));
+        renderItemToDom(newObj, newObj.projectGroup);
 
         modal.close();
         form.reset();
