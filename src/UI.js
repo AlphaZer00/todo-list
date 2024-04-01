@@ -76,10 +76,13 @@ function renderItemToDom(obj, project) {
 
 function setModalProjectSelectors() {
     const arr = getProjectList();
-    const selector = document.getElementById('itemProjectSelector')
-    const editSelector = document.getElementById('editItemProjectSelector')
+    const selector = document.getElementById('itemProjectSelector');
+    const editSelector = document.getElementById('editItemProjectSelector');
+    selector.innerHTML = '';
+    editSelector.innerHTML = '';
+	
     for (const index in arr) {
-		selector.options[selector.options.length] = new Option(arr[index], arr[index] );
+        selector.options[selector.options.length] = new Option(arr[index], arr[index]);
     }
 	for (const index in arr) {
 		editSelector.options[editSelector.options.length] = new Option(arr[index], arr[index]);
@@ -220,6 +223,7 @@ function createProjectFromForm() {
         displayNewProject(obj.project);
         form.reset();
         modal.close();
+        setModalProjectSelectors();
     })
 }
 
