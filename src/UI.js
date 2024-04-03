@@ -78,7 +78,8 @@ function renderItemToDom(obj, project) {
 }
 
 function setModalProjectSelectors() {
-    const arr = getProjectList();
+    let str = localStorage.getItem('projectArray');
+    const arr = str.split(',');
     const selector = document.getElementById('itemProjectSelector');
     const editSelector = document.getElementById('editItemProjectSelector');
     const removeSelector = document.getElementById('projectSelector');
@@ -162,10 +163,18 @@ function handleProjectDeleteButton() {
     deleteBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const project = selector.value;
+        for (let i = 0; i < listItemArr.length; i++) {
+            if (listItemArr[i].projectGroup === project) {
+                const itemID = listItemArr[i].id;
+                removeObjFromStorage(itemID);
+                listItemArr.splice(i, 1);
+            }
+        }
         deleteProject(project);
         storeObj('projectArray', getProjectList());
         setModalProjectSelectors();
         displayProjectList();
+        loadItemsFromStorage();
     })
 }
 
@@ -298,15 +307,13 @@ function formatISODate(inputDate) {
 }
 
 function loadItemsFromStorage() {
-    window.addEventListener('load', () => {
-        const keyArr = getKeyArrFromStorage();
-        displayProjectList();
-        keyArr.forEach((key) => {
-            const item = JSON.parse(localStorage.getItem(key));
-            addListItemToArr(item);
-            renderItemToDom(item, item.projectGroup);
-        });
-    })
+    const keyArr = getKeyArrFromStorage();
+    displayProjectList();
+    keyArr.forEach((key) => {
+        const item = JSON.parse(localStorage.getItem(key));
+        addListItemToArr(item);
+        renderItemToDom(item, item.projectGroup);
+    });
 }
 
 export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleAddProjectModalButtons, createProjectFromForm, handleRemoveProjectModalButtons, handleProjectDeleteButton};
