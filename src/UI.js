@@ -82,14 +82,21 @@ function setModalProjectSelectors() {
     const arr = getProjectList();
     const selector = document.getElementById('itemProjectSelector');
     const editSelector = document.getElementById('editItemProjectSelector');
+    const removeSelector = document.getElementById('projectSelector');
     selector.innerHTML = '';
     editSelector.innerHTML = '';
+    removeSelector.innerHTML = '';
 	
     for (const index in arr) {
         selector.options[selector.options.length] = new Option(arr[index], arr[index]);
     }
+
 	for (const index in arr) {
 		editSelector.options[editSelector.options.length] = new Option(arr[index], arr[index]);
+	}
+
+	for (const index in arr) {
+		removeSelector.options[removeSelector.options.length] = new Option(arr[index], arr[index]);
 	}
 }
 
