@@ -23,7 +23,7 @@ function deleteProject(project) {
 }
 
 function sortListItemsByProject() {
-    //create empty object, This object will contain Key:projectGroup, Value: Array of todolist objects that have that projectGroup:
+    //create empty object, This object will contain Key:projectGroup, Value: Array of todolist objects that have that projectGroup
     const projectObjects = {};
     //for every project in list of project (i.e 'fitness' or 'work')
     for (const project of projectList) {
