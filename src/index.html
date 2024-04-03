@@ -15,6 +15,7 @@
   </div>
   <button class="btn create-task-modal-btn">+</button>
   <button class="btn add-project-btn">Create New Project</button>
+  <button class="btn delete-project-btn">Remove a Project</button>
   <dialog class="create-task-modal">
     <h1>Create New Task</h1>
     <form class="create-task-form">
@@ -104,6 +105,16 @@
         <button type="button" id="add-project-close-btn">Close</button>
         <button type="submit" id="add-project-submit-btn">Submit</button>
       </div>
+    </form>
+  </dialog>
+  <dialog class="remove-project-modal">
+    <span>Select a project to remove</span>
+    <span class="warning">WARNING: This will permanently delete all tasks for this project!</span>
+    <form class="remove-project-form">
+      <label for="projectSelector">Project:</label>
+      <select name="project" id="projectSelector"></select required>
+      <button type="button" class="close-remove-project-modal-btn">Close</button>
+      <button type="submit" class="submit-remove-project-btn">Submit</button>
     </form>
   </dialog>
 </body>
