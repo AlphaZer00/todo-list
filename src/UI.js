@@ -131,7 +131,7 @@ function handleEditModalButtons() {
     })
 }
 
-function handleProjectModalButtons() {
+function handleAddProjectModalButtons() {
     const projectModal = document.querySelector('.add-project-modal');
     const projectModalBtn = document.querySelector('.add-project-btn');
     const closeProjectModalBtn = document.getElementById('add-project-close-btn');
