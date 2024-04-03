@@ -12,6 +12,9 @@ function displayProjectList() {
     
     //Get reference to project-area div
     const projectArea = document.querySelector('.project-area');
+
+    //Clear projectArea
+    projectArea.innerHTML = '';
     
     //for every project within the array
     for (const project of arr) {
