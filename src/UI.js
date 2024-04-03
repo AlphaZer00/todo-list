@@ -147,8 +147,8 @@ function handleItemDeleteBtn(div) {
     deleteBtn.addEventListener('click', (e) => {
         if (window.confirm("This will permanently delete this item, are you sure?")) {
             e.target.parentNode.remove();
-            removeObjFromStorage(e.target.parentNode.getAttribute('data-id'));
             let obj = listItemArr[e.target.parentNode.getAttribute('data-id')];
+            removeObjFromStorage(obj);
             removeListItemFromArr(obj);
         } else {
             return;
