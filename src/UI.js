@@ -156,6 +156,29 @@ function handleItemDeleteBtn(div) {
     })
 }
 
+function handleProjectDeleteButton() {
+    const deleteBtn = document.querySelector('.submit-remove-project-btn');
+    const selector = document.getElementById('projectSelector');
+
+    deleteBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const project = selector.value;
+        deleteProject(project);
+        storeObj('projectArray', getProjectList());
+        setModalProjectSelectors();
+        displayProjectList();
+    })
+}
+
+function handleRemoveProjectModalButtons() {
+    const deleteBtn = document.querySelector('.delete-project-btn');
+    const closeBtn = document.querySelector('.close-remove-project-modal-btn');
+    const modal = document.querySelector('.remove-project-modal');
+
+    deleteBtn.addEventListener('click', () => modal.showModal());
+    closeBtn.addEventListener('click', () => modal.close());
+}
+
 function handleCheckBox(div) {
     const checkBox = div.querySelector('.item-checkbox');
     const completed = document.querySelector('.completed-area');
