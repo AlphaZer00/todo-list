@@ -270,12 +270,19 @@ function createProjectFromForm() {
         e.preventDefault();
 
         const formData = new FormData(form);
-        const obj = Object.fromEntries(formData);
+        const obj = Object.fromEntries(formData);      
         const arr = getProjectList();
 
+        const message = document.querySelector('.ap-message');
         if (arr.includes(obj.project)) {
-            return console.log('Err; Already exists');
+            return message.textContent = 'This project already exists, please use a unique name'
         }
+        const regex = new RegExp(/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/);
+        let str = obj.project
+        if (regex.test(str)) {
+            return message.textContent = 'No special characters allowed'
+        }
+
         addNewProject(obj.project);
         displayNewProject(obj.project);
         const projArr = getProjectList();
