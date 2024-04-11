@@ -1,4 +1,4 @@
-import {getProjectList, addNewProject, deleteProject, sortListItemsByProject} from './projectManager';
+import {getProjectList, addNewProject, deleteProject, sortListItemsByProject, projectList, updateProjectListFromStorage} from './projectManager';
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID} from './listItemArray';
 import createListItem from './listItemFactory';
 import {format} from "date-fns";
@@ -6,8 +6,11 @@ import {removeObjFromStorage, storeObj, getKeyArrFromStorage} from './storage';
 
 function displayProjectList() {
     //copy array from projectList
-    let str = localStorage.getItem('projectArray');
-    const arr = str.split(',');
+    let arr = getProjectList();
+    //if projectArray is stored in localStorage then set that as arr
+    if (localStorage.getItem('projectArray')) {
+        arr = JSON.parse(localStorage.getItem('projectArray'));
+    }
     
     //Get reference to project-area div
     const projectArea = document.querySelector('.project-area');
@@ -56,8 +59,12 @@ function renderItemToDom(obj, project) {
     
     obj.checkBox === 'true' ? checkBox.checked = true : checkBox.checked = false;
     title.textContent = obj.title;
-    desc.textContent = obj.description;
-    dueDate.textContent = handleDate(obj.dueDate);
+    if (obj.description) {
+        desc.textContent = obj.description;
+    }
+    if (obj.duedate) {
+        dueDate.textContent = handleDate(obj.dueDate);
+    }
     priority.textContent = obj.priority;
     editBtn.textContent = 'Edit';
     deleteBtn.textContent = 'Delete';
@@ -78,8 +85,11 @@ function renderItemToDom(obj, project) {
 }
 
 function setModalProjectSelectors() {
-    let str = localStorage.getItem('projectArray');
-    const arr = str.split(',');
+    let arr = [];
+    if (localStorage.getItem('projectArray')) {
+        arr = JSON.parse(localStorage.getItem("projectArray"));
+    }
+
     const selector = document.getElementById('itemProjectSelector');
     const editSelector = document.getElementById('editItemProjectSelector');
     const removeSelector = document.getElementById('projectSelector');
@@ -171,7 +181,8 @@ function handleProjectDeleteButton() {
             }
         }
         deleteProject(project);
-        storeObj('projectArray', getProjectList());
+        const projArr = getProjectList();
+        storeObj('projectArray', JSON.stringify(projArr));
         setModalProjectSelectors();
         displayProjectList();
         loadItemsFromStorage();
@@ -216,8 +227,12 @@ function loadEditModalValues(e) {
     const itemIdInput = document.getElementById('itemId');
 
     title.value = item.querySelector('.item-title').textContent;
-    desc.value = item.querySelector('.item-desc').textContent;
-    dueDate.value = formatISODate(item.querySelector('.item-due-date').textContent);
+    if (item.querySelector('.item-desc').textContent) {
+        desc.value = item.querySelector('.item-desc').textContent;
+    }
+    if (item.querySelector('.item-due-date').textContent) {
+        dueDate.value = formatISODate(item.querySelector('.item-due-date').textContent);
+    }
     priority.value = item.querySelector('.item-priority').textContent;
 	projectOptions.forEach((el) => {
         if (el.value === listItemArr[itemId].projectGroup) {
@@ -237,7 +252,7 @@ function createListItemFromFormInput() {
         modal.close();
         const formData = new FormData(form);
         const obj = Object.fromEntries(formData);
-    	const newItem = createListItem(false, obj.title, obj.description, obj.dueDate, obj.priority,  obj.projectGroup);
+    	const newItem = createListItem(false, obj.title, obj.description, obj.dueDate, obj.priority, obj.projectGroup);
         
         form.reset();
         addListItemToArr(newItem);
@@ -263,10 +278,12 @@ function createProjectFromForm() {
         }
         addNewProject(obj.project);
         displayNewProject(obj.project);
-        storeObj('projectArray', getProjectList());
+        const projArr = getProjectList();
+        storeObj('projectArray', JSON.stringify(projArr));
+        updateProjectListFromStorage();
+        setModalProjectSelectors();
         form.reset();
         modal.close();
-        setModalProjectSelectors();
     })
 }
 
@@ -308,6 +325,7 @@ function formatISODate(inputDate) {
 
 function loadItemsFromStorage() {
     const keyArr = getKeyArrFromStorage();
+    updateProjectListFromStorage();
     displayProjectList();
     keyArr.forEach((key) => {
         const item = JSON.parse(localStorage.getItem(key));
@@ -316,4 +334,4 @@ function loadItemsFromStorage() {
     });
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleAddProjectModalButtons, createProjectFromForm, handleRemoveProjectModalButtons, handleProjectDeleteButton};
+export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleAddProjectModalButtons, createProjectFromForm, handleRemoveProjectModalButtons, handleProjectDeleteButton,};

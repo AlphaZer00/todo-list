@@ -1,7 +1,7 @@
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr} from './listItemArray';
 import {renderItemToDom} from './UI';
 
-const projectList = [];
+let projectList = [];
 
 function getProjectList() {
     return projectList;
@@ -44,5 +44,10 @@ function sortListItemsByProject() {
     return projectObjects;
 }
 
+function updateProjectListFromStorage() {
+    if (localStorage.getItem('projectArray') && projectList == '') {
+        projectList = JSON.parse(localStorage.getItem("projectArray"));
+    }
+}
 
-export {getProjectList, addNewProject, deleteProject, sortListItemsByProject};
+export {getProjectList, addNewProject, deleteProject, sortListItemsByProject, updateProjectListFromStorage ,projectList};
