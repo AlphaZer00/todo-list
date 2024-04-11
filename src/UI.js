@@ -277,8 +277,12 @@ function createProjectFromForm() {
         if (arr.includes(obj.project)) {
             return message.textContent = 'This project already exists, please use a unique name'
         }
-        const regex = new RegExp(/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/);
         let str = obj.project
+        const regex = new RegExp(/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/);
+        const regex2 = new RegExp(/^\d*/);
+        if (regex2.test(str)) {
+            return message.textContent = 'Project name cannot start with a digit'
+        }
         if (regex.test(str)) {
             return message.textContent = 'No special characters allowed'
         }
