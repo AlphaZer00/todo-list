@@ -279,7 +279,7 @@ function createProjectFromForm() {
         }
         let str = obj.project
         const regex = new RegExp(/[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/);
-        const regex2 = new RegExp(/^\d*/);
+        const regex2 = new RegExp(/^[0-9].*/);
         if (regex2.test(str)) {
             return message.textContent = 'Project name cannot start with a digit'
         }
