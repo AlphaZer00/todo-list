@@ -56,6 +56,8 @@ function renderItemToDom(obj, project) {
     const priority = document.createElement('div');
     const editBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
+    const buttonContainer = document.createElement('div');
+    const infoContainer = document.createElement('div');
     
     obj.checkBox === 'true' ? checkBox.checked = true : checkBox.checked = false;
     title.textContent = obj.title;
@@ -76,6 +78,8 @@ function renderItemToDom(obj, project) {
     priority.classList.add('item-priority');
     editBtn.classList.add('edit-task-modal-btn');
     deleteBtn.classList.add('delete-btn');
+    buttonContainer.classList.add('btn-container')
+    infoContainer.classList.add('info-container')
     
     itemDiv.append(checkBox, title, desc, dueDate, priority, editBtn, deleteBtn);
     parent.append(itemDiv);
@@ -156,9 +160,9 @@ function handleItemDeleteBtn(div) {
     
     deleteBtn.addEventListener('click', (e) => {
         if (window.confirm("This will permanently delete this item, are you sure?")) {
-            e.target.parentNode.remove();
-            let obj = listItemArr[e.target.parentNode.getAttribute('data-id')];
-            removeObjFromStorage(obj);
+            e.target.parentNode.parentNode.remove();
+            let obj = listItemArr[e.target.parentNode.parentNode.getAttribute('data-id')];
+            removeObjFromStorage(e.target.parentNode.parentNode.getAttribute('data-id'));
             removeListItemFromArr(obj);
             const itemArr = getListItemArr();
             storeObj('itemList', JSON.stringify(itemArr));
@@ -217,8 +221,9 @@ function handleCheckBox(div) {
 
 function loadEditModalValues(e) {
     const editModal = document.querySelector('.edit-task-modal');
-    const item = e.target.parentNode;
+    const item = e.target.parentNode.parentNode;
     const itemId = item.getAttribute('data-id');
+    const infoContainer = item.querySelector('.info-container');
 
     const title = document.getElementById('editItemTitle');
     const desc = document.getElementById('editItemDesc');
@@ -228,14 +233,14 @@ function loadEditModalValues(e) {
     const projectOptions = project.querySelectorAll('option');	
     const itemIdInput = document.getElementById('itemId');
 
-    title.value = item.querySelector('.item-title').textContent;
-    if (item.querySelector('.item-desc').textContent) {
-        desc.value = item.querySelector('.item-desc').textContent;
+    title.value = infoContainer.querySelector('.item-title').textContent;
+    if (infoContainer.querySelector('.item-desc').textContent) {
+        desc.value = infoContainer.querySelector('.item-desc').textContent;
     }
-    if (item.querySelector('.item-due-date').textContent) {
-        dueDate.value = formatISODate(item.querySelector('.item-due-date').textContent);
+    if (infoContainer.querySelector('.item-due-date').textContent) {
+        dueDate.value = formatISODate(infoContainer.querySelector('.item-due-date').textContent);
     }
-    priority.value = item.querySelector('.item-priority').textContent;
+    priority.value = infoContainer.querySelector('.item-priority').textContent;
 	projectOptions.forEach((el) => {
         if (el.value === listItemArr[itemId].projectGroup) {
             project.value = el.value
