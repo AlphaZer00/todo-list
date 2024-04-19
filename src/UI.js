@@ -1,5 +1,5 @@
 import {getProjectList, addNewProject, deleteProject, sortListItemsByProject, projectList, updateProjectListFromStorage} from './projectManager';
-import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID} from './listItemArray';
+import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID, updateItemArrFromStorage} from './listItemArray';
 import createListItem from './listItemFactory';
 import {format} from "date-fns";
 import {removeObjFromStorage, storeObj, getKeyArrFromStorage} from './storage';
@@ -160,6 +160,8 @@ function handleItemDeleteBtn(div) {
             let obj = listItemArr[e.target.parentNode.getAttribute('data-id')];
             removeObjFromStorage(obj);
             removeListItemFromArr(obj);
+            const itemArr = getListItemArr();
+            storeObj('itemList', JSON.stringify(itemArr));
         } else {
             return;
         }
@@ -259,6 +261,8 @@ function createListItemFromFormInput() {
         addUniqueID();
         renderItemToDom(newItem, newItem.projectGroup);
         storeObj(newItem.id, JSON.stringify(newItem));
+        const itemArr = getListItemArr();
+        storeObj('itemList', JSON.stringify(itemArr));
     })
 }
 
@@ -336,11 +340,11 @@ function formatISODate(inputDate) {
 
 function loadItemsFromStorage() {
     const keyArr = getKeyArrFromStorage();
+    updateItemArrFromStorage();
     updateProjectListFromStorage();
     displayProjectList();
     keyArr.forEach((key) => {
         const item = JSON.parse(localStorage.getItem(key));
-        addListItemToArr(item);
         renderItemToDom(item, item.projectGroup);
     });
 }

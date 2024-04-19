@@ -1,4 +1,4 @@
-const listItemArr = [];
+let listItemArr = [];
 
 function getListItemArr() {
     return listItemArr;
@@ -27,4 +27,10 @@ function addUniqueID() {
     return listItemArr;
 }
 
-export {getListItemArr, addListItemToArr, removeListItemFromArr, addUniqueID, listItemArr}
+function updateItemArrFromStorage() {
+    if (localStorage.getItem("itemList") && listItemArr == '') {
+        listItemArr = JSON.parse(localStorage.getItem("itemList"));
+    }
+}
+
+export {getListItemArr, addListItemToArr, removeListItemFromArr, addUniqueID, updateItemArrFromStorage, listItemArr}
