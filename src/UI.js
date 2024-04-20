@@ -329,10 +329,18 @@ function updateListItemFromFormInput() {
 
     submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
-
+        
+        const checkBox = document.getElementById('editItemCheckBox');
         const modal = document.querySelector('.edit-task-modal');
         const editFormData = new FormData(form);
         const newObj = Object.fromEntries(editFormData);
+        newObj.id = Number(newObj.id);
+        if (checkBox.checked === true) {
+            newObj.checkBox = true;
+        } else if (checkBox.checked === false) {
+            newObj.checkBox = false;
+        }
+
         const oldObj = listItemArr[newObj.id];
         let oldIndex = listItemArr.indexOf(oldObj);
 
@@ -344,6 +352,8 @@ function updateListItemFromFormInput() {
         oldObjDom.remove();
         removeObjFromStorage(oldObj.id);
         storeObj(newObj.id, JSON.stringify(newObj));
+        storeObj('itemList', JSON.stringify(getListItemArr()));
+        console.log(newObj);
         renderItemToDom(newObj, newObj.projectGroup);
 
         modal.close();
