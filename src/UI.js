@@ -228,6 +228,7 @@ function handleCheckBox(div) {
             let index = e.target.parentNode.getAttribute('data-id');
             const project = listItemArr[index].projectGroup;
             const projectSection = document.querySelector(`.${project}`);
+            listItemArr[index].checkBox = false;
             storeObj(listItemArr[index].id, JSON.stringify(listItemArr[index]));
             projectSection.append(e.target.parentNode);
         }
