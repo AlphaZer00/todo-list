@@ -43,6 +43,7 @@ function displayNewProject(project) {
 function renderItemToDom(obj, project) {
     const projectArea = document.querySelector('.project-area');
     const parent = projectArea.querySelector(`.${project}`);
+    const completedArea = document.querySelector('.completed-area');
 
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('todo-item');
@@ -59,7 +60,7 @@ function renderItemToDom(obj, project) {
     const buttonContainer = document.createElement('div');
     const infoContainer = document.createElement('div');
     
-    obj.checkBox === 'true' ? checkBox.checked = true : checkBox.checked = false;
+    obj.checkBox === true ? checkBox.checked = true : checkBox.checked = false;
     title.textContent = obj.title;
     if (obj.description) {
         desc.textContent = obj.description;
@@ -81,8 +82,16 @@ function renderItemToDom(obj, project) {
     buttonContainer.classList.add('btn-container')
     infoContainer.classList.add('info-container')
     
-    itemDiv.append(checkBox, title, desc, dueDate, priority, editBtn, deleteBtn);
-    parent.append(itemDiv);
+    buttonContainer.append(editBtn, deleteBtn);
+    infoContainer.append(title, desc, dueDate, priority,);
+    itemDiv.append(checkBox, infoContainer, buttonContainer);
+
+    if (obj.checkBox == 'true' || obj.checkBox == true) {
+        completedArea.append(itemDiv);
+    } else if (obj.checkBox == 'false' || obj.checkBox == false) {
+        parent.append(itemDiv);
+    }
+
     handleEditModalButtons();
     handleItemDeleteBtn(itemDiv);
     handleCheckBox(itemDiv);
@@ -209,11 +218,17 @@ function handleCheckBox(div) {
     const completed = document.querySelector('.completed-area');
     checkBox.addEventListener('change', (e) => {
         if (checkBox.checked === true) {
+            let index = e.target.parentNode.getAttribute('data-id');
+            listItemArr[index].checkBox = true;
+            console.log(listItemArr[index]);
+            storeObj(listItemArr[index].id, JSON.stringify(listItemArr[index]));
             completed.append(e.target.parentNode);
         }
         if (checkBox.checked === false) {
-            const project = listItemArr[e.target.parentNode.getAttribute('data-id')].projectGroup;
+            let index = e.target.parentNode.getAttribute('data-id');
+            const project = listItemArr[index].projectGroup;
             const projectSection = document.querySelector(`.${project}`);
+            storeObj(listItemArr[index].id, JSON.stringify(listItemArr[index]));
             projectSection.append(e.target.parentNode);
         }
     })
