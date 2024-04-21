@@ -380,6 +380,7 @@ function loadItemsFromStorage() {
     updateItemArrFromStorage();
     updateProjectListFromStorage();
     displayProjectList();
+    keyArr.sort(function(a, b){return a-b});
     keyArr.forEach((key) => {
         const item = JSON.parse(localStorage.getItem(key));
         renderItemToDom(item, item.projectGroup);
