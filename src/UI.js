@@ -70,10 +70,13 @@ function renderItemToDom(obj, project) {
     }
     if (obj.priority === 'Low') {
         itemDiv.style.backgroundColor = '#DAF7A6';
+        priority.textContent = 'Low';
     } else if (obj.priority === 'Medium') {
         itemDiv.style.backgroundColor = '#FFC300';
+        priority.textContent = 'Medium';
     } else if (obj.priority === 'High') {
         itemDiv.style.backgroundColor = '#FF5733';
+        priority.textContent = 'High';
     }
     editBtn.textContent = 'Edit';
     deleteBtn.textContent = 'Delete';
