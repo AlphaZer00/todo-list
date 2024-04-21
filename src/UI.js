@@ -65,10 +65,16 @@ function renderItemToDom(obj, project) {
     if (obj.description) {
         desc.textContent = obj.description;
     }
-    if (obj.duedate) {
+    if (obj.dueDate) {
         dueDate.textContent = handleDate(obj.dueDate);
     }
-    priority.textContent = obj.priority;
+    if (obj.priority === 'Low') {
+        itemDiv.style.backgroundColor = '#DAF7A6';
+    } else if (obj.priority === 'Medium') {
+        itemDiv.style.backgroundColor = '#FFC300';
+    } else if (obj.priority === 'High') {
+        itemDiv.style.backgroundColor = '#FF5733';
+    }
     editBtn.textContent = 'Edit';
     deleteBtn.textContent = 'Delete';
 
