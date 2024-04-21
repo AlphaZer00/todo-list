@@ -78,8 +78,8 @@ function renderItemToDom(obj, project) {
         itemDiv.style.backgroundColor = '#FF5733';
         priority.textContent = 'High';
     }
-    editBtn.textContent = 'Edit';
-    deleteBtn.textContent = 'Delete';
+    editBtn.innerHTML = '<img src="assets/edit_FILL0_wght400_GRAD0_opsz24.svg" alt="edit">';
+    deleteBtn.innerHTML = '<img src="assets/delete_FILL0_wght400_GRAD0_opsz24.svg" alt="delete">';
 
     checkBox.classList.add('item-checkbox');
     title.classList.add('item-title');
@@ -178,9 +178,9 @@ function handleItemDeleteBtn(div) {
     
     deleteBtn.addEventListener('click', (e) => {
         if (window.confirm("This will permanently delete this item, are you sure?")) {
-            e.target.parentNode.parentNode.remove();
-            let obj = listItemArr[e.target.parentNode.parentNode.getAttribute('data-id')];
-            removeObjFromStorage(e.target.parentNode.parentNode.getAttribute('data-id'));
+            e.target.closest('.todo-item').remove();
+            let obj = listItemArr[e.target.closest('.todo-item').getAttribute('data-id')];
+            removeObjFromStorage(e.target.closest('.todo-item').getAttribute('data-id'));
             removeListItemFromArr(obj);
             const itemArr = getListItemArr();
             storeObj('itemList', JSON.stringify(itemArr));
@@ -246,7 +246,7 @@ function handleCheckBox(div) {
 
 function loadEditModalValues(e) {
     const editModal = document.querySelector('.edit-task-modal');
-    const item = e.target.parentNode.parentNode;
+    const item = e.target.closest('.todo-item');
     const itemId = item.getAttribute('data-id');
     const infoContainer = item.querySelector('.info-container');
 
