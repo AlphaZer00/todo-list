@@ -160,7 +160,7 @@ function handleModalButtons() {
         ) {
           createModal.close()
         }
-      })
+    })
 }
 
 function handleEditModalButtons() {
@@ -189,7 +189,7 @@ function handleEditModalButtons() {
         ) {
             editModal.close()
         }
-      })
+    })
 }
 
 function handleAddProjectModalButtons() {
@@ -200,6 +200,17 @@ function handleAddProjectModalButtons() {
     closeProjectModalBtn.addEventListener('click', () => projectModal.close());
     projectModalBtn.addEventListener('click', () => projectModal.showModal());
 
+    projectModal.addEventListener("click", e => {
+        const dialogDimensions = projectModal.getBoundingClientRect()
+        if (
+          e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom
+        ) {
+            projectModal.close()
+        }
+    })
 }
 
 function handleItemDeleteBtn(div) {
@@ -249,6 +260,18 @@ function handleRemoveProjectModalButtons() {
 
     deleteBtn.addEventListener('click', () => modal.showModal());
     closeBtn.addEventListener('click', () => modal.close());
+
+    modal.addEventListener("click", e => {
+        const dialogDimensions = modal.getBoundingClientRect()
+        if (
+          e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom
+        ) {
+            modal.close()
+        }
+    })
 }
 
 function handleCheckBox(div) {
