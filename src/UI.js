@@ -419,4 +419,4 @@ function loadItemsFromStorage() {
     });
 }
 
-export {displayProjectList, renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleAddProjectModalButtons, createProjectFromForm, handleRemoveProjectModalButtons, handleProjectDeleteButton,};
+export { renderItemToDom, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput,  updateListItemFromFormInput, loadItemsFromStorage, handleAddProjectModalButtons, createProjectFromForm, handleRemoveProjectModalButtons, handleProjectDeleteButton,};
