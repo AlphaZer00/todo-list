@@ -149,6 +149,18 @@ function handleModalButtons() {
     createTaskModalBtn.addEventListener('click', () => {
         createModal.showModal();
     })
+
+    createModal.addEventListener("click", e => {
+        const dialogDimensions = createModal.getBoundingClientRect()
+        if (
+          e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom
+        ) {
+          createModal.close()
+        }
+      })
 }
 
 function handleEditModalButtons() {
@@ -166,6 +178,18 @@ function handleEditModalButtons() {
     closeEditTaskModalBtn.addEventListener('click', () => {
         editModal.close();
     })
+
+    editModal.addEventListener("click", e => {
+        const dialogDimensions = editModal.getBoundingClientRect()
+        if (
+          e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom
+        ) {
+            editModal.close()
+        }
+      })
 }
 
 function handleAddProjectModalButtons() {
