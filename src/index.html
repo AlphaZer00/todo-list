@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List</title>
-  <link rel="icon" href="assets/favicon.ico">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
 </head>
 <body>
   <header>
@@ -117,8 +114,10 @@
     <form class="remove-project-form">
       <label for="projectSelector">Project:</label>
       <select name="project" id="projectSelector"></select required>
-      <button type="button" class="close-remove-project-modal-btn">Close</button>
-      <button type="submit" class="submit-remove-project-btn">Submit</button>
+        <div class="remove-project-modal-btn-container">
+          <button type="button" class="close-remove-project-modal-btn">Close</button>
+          <button type="submit" class="submit-remove-project-btn">Submit</button>
+        </div>
     </form>
   </dialog>
   <footer>Designed and developed by Batuhan Dasdemir<a href="https://github.com/AlphaZer00"><img src="assets/github-mark.svg" alt=""></a> <a href="https://linkedin.com/in/batuhan-dasdemir"><img src="assets/linkedin-2.svg" alt=""></a></footer>
