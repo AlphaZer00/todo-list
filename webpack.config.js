@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -26,10 +27,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+        filename: 'index.html',
         template: './src/index.html',
         title: 'Todo List',
         inject: 'head',
         scriptLoading: 'defer',
     }),
+    new FaviconsWebpackPlugin('src/assets/favicon.svg')
   ]
 };
