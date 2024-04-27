@@ -1,3 +1,4 @@
+
 import {getProjectList, addNewProject, deleteProject, updateProjectListFromStorage} from './projectManager';
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID, updateItemArrFromStorage} from './listItemArray';
 import createListItem from './listItemFactory';
@@ -83,8 +84,8 @@ function renderItemToDom(obj, project) {
         itemDiv.style.backgroundColor = '#FF5733';
         priority.textContent = 'High';
     }
-    editBtn.innerHTML = '<img src="assets/edit_FILL0_wght400_GRAD0_opsz24.svg" alt="edit">';
-    deleteBtn.innerHTML = '<img src="assets/delete_FILL0_wght400_GRAD0_opsz24.svg" alt="delete">';
+    editBtn.innerHTML = '<img src="../src/assets/edit_FILL0_wght400_GRAD0_opsz24.svg" alt="edit">';
+    deleteBtn.innerHTML = '<img src="../src/assets/delete_FILL0_wght400_GRAD0_opsz24.svg" alt="delete">';
 
     checkBox.classList.add('item-checkbox');
     title.classList.add('item-title');

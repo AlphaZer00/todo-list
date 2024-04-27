@@ -18,4 +18,7 @@ createListItemFromFormInput();
 updateListItemFromFormInput();
 
 createProjectFromForm();
-console.log(JSON.parse(localStorage.getItem('itemList')));
+
+if (process.env.NODE_ENV !== 'production') {
+    console.log('Looks like we are in development mode!');
+  }
