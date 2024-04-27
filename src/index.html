@@ -3,26 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Todo List</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
 </head>
 <body>
-  <header>TODO List</header>
+  <header>
+    <h1>Todo List</h1>
+    <div class="header-btn-container">
+      <button class="btn add-project-btn">Create New Project</button>
+      <button class="btn delete-project-btn">Remove a Project</button>
+      <button class="btn create-task-modal-btn"><img src="assets/add_FILL0_wght400_GRAD0_opsz24.svg" alt="+"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg> Add Task</button>
+    </div>
+  </header>
   <div class="project-area">
-
+    <h2>Projects</h2>
   </div>
   <div class="completed-area">
-    <h2>Completed Tasks</h2>
+    <h3>Completed Tasks</h3>
   </div>
-  <button class="btn create-task-modal-btn">+</button>
-  <button class="btn add-project-btn">Create New Project</button>
-  <button class="btn delete-project-btn">Remove a Project</button>
   <dialog class="create-task-modal">
     <h1>Create New Task</h1>
     <form class="create-task-form">
-      <div class="modal-form-checkbox">
-        <label for="itemCheckBox"></label>
-        <input type="checkbox" name="checkBox" id="itemCheckBox" value="true">
-      </div>
       <div class="modal-form-title">
         <label for="itemTitle">Title:</label>
         <input type="text" name="title" id="itemTitle" required>
@@ -59,8 +62,8 @@
     <h1>Edit Task</h1>
     <form class="edit-task-form">
       <div class="modal-form-checkbox">
-        <label for="editItemCheckBox"></label>
-        <input type="checkbox" name="checkBox" id="editItemCheckBox" value="true" required>
+        <label for="editItemCheckBox">Task Completed:</label>
+        <input type="checkbox" name="checkBox" id="editItemCheckBox" required>
       </div>
       <div class="modal-form-title">
         <label for="editItemTitle">Title:</label>
@@ -109,7 +112,7 @@
     </form>
   </dialog>
   <dialog class="remove-project-modal">
-    <span>Select a project to remove</span>
+    <h1>Select a project to remove</h1>
     <span class="warning">WARNING: This will permanently delete all tasks for this project!</span>
     <form class="remove-project-form">
       <label for="projectSelector">Project:</label>
@@ -118,5 +121,7 @@
       <button type="submit" class="submit-remove-project-btn">Submit</button>
     </form>
   </dialog>
+  <footer>Designed and developed by Batuhan Dasdemir<a href="https://github.com/AlphaZer00"><img src="assets/github-mark.svg" alt=""></a> <a href="https://linkedin.com/in/batuhan-dasdemir"><img src="assets/linkedin-2.svg" alt=""></a></footer>
+
 </body>
 </html>
