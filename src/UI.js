@@ -1,4 +1,4 @@
-import {getProjectList, addNewProject, deleteProject, sortListItemsByProject, projectList, updateProjectListFromStorage} from './projectManager';
+import {getProjectList, addNewProject, deleteProject, updateProjectListFromStorage} from './projectManager';
 import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr, addUniqueID, updateItemArrFromStorage} from './listItemArray';
 import createListItem from './listItemFactory';
 import {format} from "date-fns";

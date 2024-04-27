@@ -1,15 +1,9 @@
 import _ from 'lodash';
 import './style.css';
-import createListItem from './listItemFactory';
-import {getProjectList, addNewProject, deleteProject, sortListItemsByProject} from './projectManager';
-import {getListItemArr, addListItemToArr, removeListItemFromArr, addUniqueID, listItemArr} from './listItemArray';
-import {displayProjectList, setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, loadEditModalValues, updateListItemFromFormInput, loadItemsFromStorage, handleAddProjectModalButtons, createProjectFromForm, handleRemoveProjectModalButtons, handleProjectDeleteButton} from './UI';
-import { storeObj, removeObjFromStorage, getKeyArrFromStorage } from './storage';
+import {sortListItemsByProject} from './projectManager';
+import {setModalProjectSelectors, handleModalButtons, createListItemFromFormInput, updateListItemFromFormInput, loadItemsFromStorage, handleAddProjectModalButtons, createProjectFromForm, handleRemoveProjectModalButtons, handleProjectDeleteButton} from './UI';
 
-addNewProject('fitness');
-addNewProject('work');
-addNewProject('home');
-
+window.addEventListener('load', () => loadItemsFromStorage());
 
 handleModalButtons();
 handleRemoveProjectModalButtons();
@@ -24,5 +18,4 @@ createListItemFromFormInput();
 updateListItemFromFormInput();
 
 createProjectFromForm();
-
-window.addEventListener('load', () => loadItemsFromStorage());
+console.log(JSON.parse(localStorage.getItem('itemList')));

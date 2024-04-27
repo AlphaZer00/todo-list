@@ -1,4 +1,4 @@
-import {getListItemArr, addListItemToArr, removeListItemFromArr, listItemArr} from './listItemArray';
+import {listItemArr} from './listItemArray';
 import {renderItemToDom} from './UI';
 
 let projectList = [];
