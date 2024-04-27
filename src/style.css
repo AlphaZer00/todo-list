@@ -1,4 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    margin: 0px;
+}
+
+html {
+    font-family: "Roboto", sans-serif;
+}
+
 header {
-    background-color: rgb(7, 45, 255);
-    color: white;
+    background-color: #E7C6FF;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    margin-bottom: .5rem;
+}
+
+header>h1, h3 {
+    font-weight: 400;
+    margin: 0px;
+}
+
+.header-btn-container {
+    display: flex;
+    gap: .5rem;
+}
+
+header button {
+    max-height: 3rem;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: .9rem;
+}
+
+header button:hover {
+    transform: scale(1.02);
+    background-color: #e1bcfb;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+header button:active {
+    box-shadow: none;
+    transform: translateY(1px);
+}
+
+header>button>img {
+    height: 1.5rem
+}
+
+.project-area, .completed-area {
+    display: flex;
+    flex-direction: column;
+    max-width: 60vw;
+    margin: 0rem auto;
+}
+
+.project-section {
+    font-size: 1.5rem;
+}
+
+.todo-item {
+    padding: .5rem;
+    margin: .5rem 0rem;
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1.5rem 5fr 2fr;
+    grid-template-rows: 1fr;
+    border-radius: 5px;
+}
+
+.btn-container{
+    display: none;
+    justify-self: end;
+}
+
+.btn-container>button {
+    background-color: transparent;
+    border-radius: 10px;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+}
+
+.btn-container>button:hover {
+    transform: scale(1.2);
+}
+
+.btn-container>button:active {
+    transform: translateY(2px) scale(1.2);
+}
+
+.btn-container>button>img {
+    height: 1.4rem;
+}
+
+.todo-item:hover {
+    .btn-container {
+        display: block;
+    }
+}
+
+.item-title {
+    font-size: 1.2rem;
+}
+
+.item-desc, .item-due-date{
+    font-size: 1rem;
+    color: #272727;
+}
+
+.item-priority {
+    display: none;
+}
+
+/* Footer */
+footer {
+    background-color: #E7C6FF;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+}
+
+footer img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+footer img:hover {
+    transform: scale(1.2);
+}
+
+/* Forms */
+dialog {
+    border-radius: 5px;
+    border: none;
 }
