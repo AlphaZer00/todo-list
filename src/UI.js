@@ -17,6 +17,11 @@ function displayProjectList() {
 
     //Clear projectArea
     projectArea.innerHTML = '';
+
+    //Create and append header
+    const h3 = document.createElement('h3');
+    h3.textContent = 'Projects';
+    projectArea.append(h3);
     
     //for every project within the array
     for (const project of arr) {
