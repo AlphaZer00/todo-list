@@ -136,4 +136,4 @@ Project Link: [https://github.com/AlphaZer00/todo-list](https://github.com/Alpha
 [license-url]: https://github.com/AlphaZer00/todo-list/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/batuhan-dasdemir
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: src/assets/project-screenshot.png
