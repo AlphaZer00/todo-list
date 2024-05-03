@@ -38,7 +38,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#what-i-learned">What I Learned</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -78,14 +78,13 @@ Once an item is created, you can edit it, delete it, and mark it as complete.
 
 
 <!-- ROADMAP -->
-## Roadmap
+## What I Learned
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+This project was the largest project I have worked on to date and has taken the most time. Conceptually, it is a basic todo list, but as I continued to develop, more and more ideas for features that felt necessary kept popping up in my head. I had to explore a lot of new tools to get everything working. I had to get used to finding and utilizing javscript libraries. For example, I used date-fns for handling the formatting of due dates, favicons-webpack-plugin to resolve my favicon fiasco (seriously, why can't there just be one standard file type/size that just works on all modern browsers???), and gh-pages for deploying a live version on github on a webpack-based project. That process got me much more comfortable with webpack. 
 
-See the [open issues](https://github.com/AlphaZer00/todo-list/issues) for a full list of proposed features (and known issues).
+I made use of local storage for this project. It was my first time experiementing with storage and I had a fun time working it out. One challenge was ensuring that any new task, edits to a task, or deletions were recorded in storage and then properly displayed on page reload. There was a bug where refreshing the page would clone every existing todo list item on the DOM, which was resolved by finding out that two different functions were displaying the stored list items simultaneously. 
+
+A crucial concept that I had in mind from the beginning with this project is that the underlying logic and user interface should be as separate as possible. Essentially, I tried to create as complete of a version of this project as possible that functioned just in the console before working on the UI. The part where i ran into trouble with this concept is that a big part of the project is about creating and editing the todo list objects through user inputs. It became more difficult to avoid creating functions that merged UI elements with underlying application logic.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
